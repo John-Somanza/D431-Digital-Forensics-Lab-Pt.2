@@ -16,135 +16,82 @@ To access the Autopsy application and the files you need to recover, you will us
 
 <h2>Task Walk-Through:</h2>
 
-A. Network Topology
+A1: Case Creation
 
 <p align="center">
-Screenshots of running Nmap: <br/>
-<img src="https://i.imgur.com/mbK9uXv.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+1.	Once I entered Autopsy, the first thing I did was create a new case. <br/>
+<img src="https://i.imgur.com/MTFxVqY.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Screenshot of Zenmap Topology:  <br/>
-<img src="https://i.imgur.com/zN2STZu.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+2.	I put the case name as 383064568 and the base directory to C:\Users\LabUser\Desktop\Evidence Files. <br/>
+<img src="https://i.imgur.com/WVRq8zM.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
- 
-The network topology I found when running Nmap was the star topology, as shown above. This network consists of 6 hosts, with 3 of them being Linux machines, 2 of them being Windows Servers, and the last one being an unknown device. The addresses of these 6 hosts are:
- 
--	10.168.27.10 (Microsoft Windows Server 2012 or Windows Server 2012 R2)
--	10.168.27.15 (Microsoft Windows Server 2008 R2 or Windows 8.1)
--	10.168.27.1 (Unknown device)
--	10.168.27.14 (Linux 2.6.32)
--	10.168.27.20 (Linux 2.6.32)
--	10.168.27.13 (Linux 2.6.32)
-
-B. Summary of Vulnerabilities and Implications
-
-<p align="center">
-First vulnerability
-and the potential implications:
-
-Regarding 10,168.27.14, 10.168.27.20, and 10,168.27.13, I noticed that they were all running Linux 2.6.32 as their OS. The reason why I brought this up is because this specific version of Linux is actually vulnerable to DOS (Denial of Service) attacks, and this can be seen in the NVD (national Vulnerability Database), specifically in the CVE dictionary entry CVE-2019-17351.
-
-The potential implications with this vulnerability are service disruptions and complete unavailability of the targeted service. By sending an overwhelming amount of traffic to the targeted system’s resources, the attacker can cause the victim to become incapable of responding to legitimate requests.
-
-<p align="center">
-<img src="https://i.imgur.com/gGqkZt1.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+3.	I set the case number and name to 383064568. <br/>
+<img src="https://i.imgur.com/KHmOw09.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-<img src="https://i.imgur.com/Qt3oxIZ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+4.	On the Select Host page I used the default settings. <br/>
+<img src="https://i.imgur.com/0vsLJF9.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-<img src="https://i.imgur.com/g0jP07Y.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+5.	For the data source type, I selected Disk image or VM file. <br/>
+<img src="https://i.imgur.com/l7kZw8y.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+6.	For the Data Source path, I used C:\Users\LabUser\Desktop\Evidence Files\JSmith_Q1.001. For Select Data Source I accepted the defaults. <br/>
+<img src="https://i.imgur.com/cnbESuP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+7.	For the Configure Digest, I accepted the defaults. <br/>
+<img src="https://i.imgur.com/yG5yHlJ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 
-<p align="center">
-Second vulnerability
-and the potential implications:
-
-Regarding 10.168.27.15, I noticed that tcp port 21 (FTP) is open and is running FileZilla ftpd. FTP, aka File Transfer Protocol, is a protocol that transfers files in clear text rather than encryption, which makes it very easy for attackers to intercept the traffic and use the acquired information for malicious purposes since they can see exactly what it is they acquired.
+A2: Analysis
 
 <p align="center">
-<img src="https://i.imgur.com/kXuDZts.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+8.	After the Autopsy was fully loaded, I first began my analysis by expanding the tree on  the left so that I can see what the program was able to find. <br/>
+<img src="https://i.imgur.com/0MMuqwX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+9.	I then went to see the arrangement of the image under the Host Section. <br/>
+<img src="https://i.imgur.com/2WOXm16.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+10.	The next step I took was to take a look at the breakdown of the file types on the image. <br/>
+<img src="https://i.imgur.com/n0fvixP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+11.	Based on the results, it shows that there were 11 PDF files and 379 image files found. <br/>
+<img src="https://i.imgur.com/kUaMVNB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://i.imgur.com/PhKUuG0.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+12.	After this, I decided to take a look at the deleted files. From what I saw, there seemed to be very important and confidential information, including business strategies, oil strategies, etc. These files were exported into the evidence folder. <br/>
+<img src="https://i.imgur.com/22AqaDe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+13.	Next, I used the keyword search for the word “confidential” to see if there were any additional sensitive information. I saved the resulting files to the Export Folder, C:\Users\LabUser\Desktop\Evidence Files\Example\Export. <br/>
+<img src="https://i.imgur.com/bGv6qrC_d.webp?maxwidth=760&fidelity=grand" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+14.	Next, I used the keyword search for the word “restricted” to see if there were any additional sensitive information. I saved the resulting files to the Export Folder, C:\Users\LabUser\Desktop\Evidence Files\Example\Export. <br/>
+<img src="https://i.imgur.com/C52JoAP.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+15.	Next, I used the keyword search for the word “proprietary” to see if there were any additional sensitive information. I saved the resulting files to the Export Folder, C:\Users\LabUser\Desktop\Evidence Files\Example\Export. <br/>
+<img src="https://i.imgur.com/X2Gzwlj.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<br />
+<br />
+16.	I also noticed that there were a few files about cryptocurrency, so I decided to take a look into that as well. I found that these files contained information about how to hide something in plain sight (crypto laundering), as well as how to buy bitcoin anonymously. <br/>
+<img src="https://i.imgur.com/hIZh7ds.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
 
-<p align="center">
-Third vulnerability
-and the potential implications:
- 
-Once again, regarding 10.168.27.15, I noticed that this host was running Microsoft Windows 7 Professional or Windows Server 8 as their OS. I reason why I brought this up is because Windows 8 has reached it’s end-of-life cycle, meaning that it no longer receives critical security updates. In summary, although it is still usable, the vulnerabilities that are there won’t be able to be patched and will just remain there.
+A3: Summary of Findings
 
-An example of a vulnerability here is specifically stated in the CVE dictionary entry CVE-2015-0014. In simple terms, this states that the Telnet service is open to buffer overflow, which allows remote attackers to execute arbitrary code via crafted packets, aka “Windows Telnet Service Buffer Overflow Vulnerability.” The problem with this is that since this OS has reached its end of life cycle, there is no patch to resolve this issue so the vulnerability will simply remain as a result.
-
-C.  Wireshark Anomalies
-
-<p align="center">
-First Anomaly 
-and evidence, plus the range of packets:
-
-I used the Pcap1.pcapng file for this assignment. The first anomaly I discovered was a large amount of traffic being sent from 10.16.80.243 to the 10.168.27.0/24 network. The enemy was most likely trying to scan all the ports to map out the network and see what they could discover.
-
-<p align="center">
-<img src="https://i.imgur.com/K07byHd.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-
-<p align="center">
-Second Anomaly
-and evidence, plus the range of packets:
-
-The second anomaly I found is in relation to the previous nmap scan that we did. When filtering for the FTP protocol, I noticed that 10.168.27.10 was using FileZilla File Transfer Protocol. This protocol doesn’t use any encryption, therefore making it very easy for the enemy to intercept important information such as username and password credentials.
-
-<p align="center">
-<img src="https://i.imgur.com/b1EHZ3G.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-
-D. Implications of each Wireshark Anomaly
-
-Implications of taking no action 1:
-
-In regards to the first anomaly, the implications of taking no action on the attacker sending mass amounts of traffic is the allowance of the attacker to see which ports were open, which OS were running, and as a result seeing what the path of least resistance would be for them to continue their attack.
-
-Implications of taking no action 2:
-
-In regards to the second anomaly, the implications of not taking action on the FTP server is a possible interception of sensitive information from users logging into the FTP server. In this case, as shown in Pcap1, this included passwords, usernames, and IP addresses. With this information open in clear text, an attacker can collect this information with ease and use it to manipulate the server settings, delete users and conduct unauthorized actions.
-
-E.  Recommended Solutions
-
-First Vulnerability:
-
-Update it to the latest version or have it taken off the network completely. The recommended solution would be to upgrade the OS to version 5.3.2 (Snyk Vulnerability Database | Snyk. (n.d.). 
-
-Second Vulnerability/Anomaly:
-
-Block traffic coming from FTP and not allow any FTP software to be installed. The recommended solution would be to sue a more secure version of FTP, such as SFTP (What Is FTP (File Transfer Protocol)? Definition, Uses, and Best Practices for 2022. (n.d.).
-
-Third Vulnerability:
-
-Update it to the latest version of Windows that can receive security updates or remove it off the network completely. The recommended solution is to upgrade the OS to the latest version before the end of cycle is reached which was in January 2020. This was announced by Microsoft. (Windows Server 2008 (R2) End of Life | What to Do Now? (n.d.).
-
-First Anomaly:
-
-Use a port scanner to monitor the network on a regular basis as well as close unnecessary ports.
-
-<p align="center">
-References:
-
-<p align="center">
-NVD. (n.d.). https://nvd.nist.gov/vuln/detail/CVE-2019-17351
-
-<p align="center">
-NVD. (n.d.). https://nvd.nist.gov/vuln/detail/CVE-2015-0014
-
-<p align="center">
-The Linux Kernel Archives. (n.d.). https://cdn.kernel.org/pub/linux/kernel/v5.x/ChangeLog-5.2.3 
-
-<p align="center">
-SNYK vulnerability database: Snyk. Learn more about Unmanaged (C/C++) with Snyk Open Source Vulnerability Database. (n.d.). https://security.snyk.io/vuln/SNYK-UNMANAGED-TORVALDSLINUX-3006273
-
-<p align="center">
-FTP definition, uses, best practices. Spiceworks. https://www.spiceworks.com/tech/networking/articles/what-is-ftp/#:~:text=April%2012%2C%202022,ten%20best%20practices%20for%20operation.
-
-<p align="center">
-Maggie. (n.d.). Windows server 2008 (R2) end of life: What to do now?. Windows Server 2008 (R2) End of Life | What to Do Now? https://www.ubackup.com/windows-server/windows-server-2008-end-of-life-3889.html 
+After going through my analysis, I was presented with multiple pieces of information and evidence that could link to John Smith being involved with theft of sensitive information and unauthorized access. This is because the image of his workstation showed proprietary and sensitive documents that John had no business having access to. Some of these included business plans, oil strategies, and trade secrets. This leads us to believe that he is involved in policy violations. What was also interesting was the fact that he was looking for ways to hide information in plain sight (crypto laundering), as well as looking for ways to buy bitcoin anonymously. This leads us to believe that John was potentially trying to sell these important documents in exchange for bitcoin. With all of this evidence, it is almost, if not, certain that John Smith is in clear violation of company policies and that he is a threat to it.
  
 </p>
 
